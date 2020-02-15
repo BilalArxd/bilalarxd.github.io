@@ -73,7 +73,7 @@ Every time we commit new code or merge a branch we trigger build and success bui
 
 (**shared**: same for D, Q, S, and P | **separate**: unique for D, Q, S, and P)
 
-###### Build
+#### Build
 
 1. Clone Code (shared)
 2. Run Transformations (separate)
@@ -89,7 +89,7 @@ If we look closely only actions which are unique for every environment are the r
 4 Deployments and Environments
 After changing build actions we will have the following actions for build and deployments.
 
-###### Build
+#### Build
 
 1. Clone Code (shared)
 2. Install Dependencies (shared)
@@ -98,7 +98,7 @@ After changing build actions we will have the following actions for build and de
 5. Create Artifacts (shared)
 6. Publish Artifacts (shared)
 
-###### Deployment
+#### Deployment
 
 1. Get Published Artifacts (shared)
 2. Select Configurations (separate)
