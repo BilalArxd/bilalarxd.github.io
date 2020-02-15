@@ -52,12 +52,12 @@ When Polar Bears Squad was formed, our first meeting was to define our value sys
 
 Three weeks ago we came to know that Second Project is ready to be taken by Polar Bears, and we were very excited to face the new challenge, wait wait wait!!! a new challenge? developing an app with the same technology, same workflow? same branching model? same database? same build plans? and the same deployments? it won’t be a challenge, It's just a “same coffee in new wrapping”. So what will be a challenge then? the challenge would be to fix all the above problems in the new project or at least try it. Here are our problems
 
-## ## Mono-Repo
+#### Mono-Repo
 
 Most top companies like Google, Microsoft, and Facebook are using a mono repository for their project. Mono-Repo means a single repository for everything, divided by folders and sub-folders for multiple projects and modules, they handle millions of commits daily by users and bots, with billions of file changes. Now the question is how they do it? Can tools (like git and mercurial we use daily) handle this amount of commits and data? Obviously not, these three companies have extended existing tools or created their own systems to handle this amount of data. But it doesn't mean we have to create ours too, our code base compared to these giant companies is nothing and these simple tools are able to handle our commits and file changes. So if we just use these tools with mono-repo we'd have support by default. You can read more on these [here](https://trunkbaseddevelopment.com/) and [here](https://github.com/cgbystrom/awesome-trunk-based-dev).
 So, It means we can have a single repository having three folders for three platforms, and we will get support out of the box by daily use tools. That's great, isn't it?
 
-## ## One Branch
+#### One Branch
 
 Now the question is aren't we combining all the 48 things to a single repository which was previously divided into three different repositories, we'll have twelve branches in a single repository to maintain and it would be worst then the previous model. Yes, it would be worse if we don't update our workflow with mono-repo. A popular approach which is used widely with mono-repo is trunk based development, which is
 
@@ -65,7 +65,7 @@ Now the question is aren't we combining all the 48 things to a single repository
 
 So if we adopt mono-repo with trunk based development we can reduce the number of branches to just 1.
 
-## ## One Build
+#### One Build
 
 To understand builds, deployments, and environments we need to see what responsibilities and functions they do or serve. Builds clone code, run the transformations over it, install dependencies, build code, create and publish artifacts. Deployments get published artifacts from the build and deploy them to an IP. Environments run on an IP, provides OS and Hosting Server for binaries.
 
@@ -73,7 +73,7 @@ Every time we commit new code or merge a branch we trigger build and success bui
 
 (**shared**: same for D, Q, S, and P | **separate**: unique for D, Q, S, and P)
 
-## ## #Build
+#### #Build
 
 1. Clone Code (shared)
 2. Run Transformations (separate)
@@ -89,7 +89,7 @@ If we look closely only actions which are unique for every environment are the r
 4 Deployments and Environments
 After changing build actions we will have the following actions for build and deployments.
 
-## ## #Build
+#### #Build
 
 1. Clone Code (shared)
 2. Install Dependencies (shared)
@@ -98,7 +98,7 @@ After changing build actions we will have the following actions for build and de
 5. Create Artifacts (shared)
 6. Publish Artifacts (shared)
 
-## ## #Deployment
+#### #Deployment
 
 1. Get Published Artifacts (shared)
 2. Select Configurations (separate)
