@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 export default function Reveal({
   children,
@@ -12,15 +12,24 @@ export default function Reveal({
   delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-  );
+  // Server-rendered and no-JS default: fully visible. The scroll-triggered
+  // fade is a progressive enhancement layered on top after mount, not a
+  // gate on content visibility — see bug.md CRITICAL / ux.md #1 and #7.
+  const [visible, setVisible] = useState(true);
+  const [animate, setAnimate] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const node = ref.current;
-    if (!node || visible) return;
+    if (!node) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // Already in (or near) the viewport at mount — leave it visible as
+    // rendered, no animation needed, no flash.
+    const rect = node.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 1.1) return;
+
+    setAnimate(true);
+    setVisible(false);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -33,13 +42,12 @@ export default function Reveal({
     );
     observer.observe(node);
     return () => observer.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- intentional mount-only bail-out check
   }, []);
 
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
+      className={`${animate ? "transition-all duration-700 ease-out" : ""} ${
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       } ${className}`}
       style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}

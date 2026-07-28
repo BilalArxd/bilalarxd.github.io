@@ -36,6 +36,9 @@ jobs:
       - name: Typecheck
         run: npx tsc --noEmit
 
+      - name: Test
+        run: npm test
+
       - name: Build (static export)
         run: npm run build
 

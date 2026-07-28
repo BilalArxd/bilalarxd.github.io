@@ -1,5 +1,10 @@
 import Reveal from "./Reveal";
-import { ArrowUpRightIcon, GithubIcon, MailIcon } from "./icons";
+import {
+  ArrowUpRightIcon,
+  GithubIcon,
+  LinkedInIcon,
+  MailIcon,
+} from "./icons";
 
 export default function Contact() {
   return (
@@ -25,6 +30,16 @@ export default function Contact() {
           >
             <MailIcon className="h-4 w-4" />
             mail.BilalArshad@gmail.com
+          </a>
+          <a
+            href="https://linkedin.com/in/bilalarxd"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center gap-2 rounded-full border border-neutral-300 px-5 py-2.5 text-sm font-semibold text-neutral-700 transition-colors hover:border-indigo-400 hover:text-indigo-600 dark:border-white/15 dark:text-neutral-300 dark:hover:border-indigo-500/60 dark:hover:text-indigo-400"
+          >
+            <LinkedInIcon className="h-4 w-4" />
+            LinkedIn
+            <ArrowUpRightIcon className="h-3.5 w-3.5" />
           </a>
           <a
             href="https://github.com/BilalArxd"

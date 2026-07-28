@@ -24,6 +24,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# test coverage
+/coverage/
+
+# QA scratch output (bug.md itself is kept, screenshots are not committed)
+/qa/screenshots/
+
 # AI assistant / editor tooling (local only, not part of the site)
 /.agents/
 /.apex/
@@ -34,3 +40,8 @@ next-env.d.ts
 
 # source resume files (not published)
 /resume/
+app/components/About.tsx
+.gitignore
+bug.md
+ux.md
+package-lock.json

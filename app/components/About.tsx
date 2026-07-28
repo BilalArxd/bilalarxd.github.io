@@ -19,23 +19,21 @@ const INDUSTRIES = [
   "Enterprise SaaS",
 ];
 
+// Trimmed to the tags that actually differentiate each group (5-8 each) and
+// deduped across groups (e.g. DynamoDB now lives only under Cloud) — the
+// full exhaustive list belongs on the CV, not as a wall of ~80 pills here.
+// See ux.md #3.
 const SKILL_GROUPS = [
   {
     name: "Applied AI",
     tags: [
       "Multi-Agent Systems",
-      "Supervisor/Specialist Orchestration",
       "Agentic Workflows",
       "RAG",
       "LangChain/LangGraph",
-      "Microsoft Agent Framework (MAF)",
       "MCP",
-      "AI-Assisted SDLC",
       "Prompt & Context Engineering",
-      "Structured Outputs",
-      "Tool Calling",
       "LLM Evaluation",
-      "Human-in-the-Loop Review",
       "AI Governance",
     ],
   },
@@ -43,7 +41,6 @@ const SKILL_GROUPS = [
     name: "AI Platforms",
     tags: [
       "Amazon Bedrock",
-      "Amazon Bedrock Knowledge Bases",
       "Anthropic API",
       "Amazon Lex",
       "Amazon Connect",
@@ -56,20 +53,12 @@ const SKILL_GROUPS = [
     tags: [
       "C#",
       ".NET",
-      ".NET Core",
-      "ASP.NET Core",
-      "REST APIs",
-      "EF Core",
-      "Dapper",
       "Python",
       "FastAPI",
-      "Node.js",
       "TypeScript",
       "React",
       "SQL Server",
       "PostgreSQL",
-      "MongoDB",
-      "DynamoDB",
     ],
   },
   {
@@ -78,13 +67,10 @@ const SKILL_GROUPS = [
       "Solution Architecture",
       "Microservices",
       "Distributed Systems",
-      "Clean Architecture",
-      "SOLID",
       "Event-Driven Architecture",
+      "Clean Architecture",
       "Serverless",
-      "State Machines",
       "Enterprise Integration",
-      "WebSocket/SSE Streaming",
     ],
   },
   {
@@ -92,17 +78,12 @@ const SKILL_GROUPS = [
     tags: [
       "AWS Lambda",
       "Step Functions",
-      "API Gateway",
       "DynamoDB",
       "S3",
-      "IAM",
       "Terraform",
       "Azure Functions",
-      "Azure App Services",
-      "Azure Logic Apps",
       "Azure API Management",
       "Azure Data Factory",
-      "Azure Blob Storage",
     ],
   },
   {
@@ -110,15 +91,11 @@ const SKILL_GROUPS = [
     tags: [
       "Azure DevOps",
       "GitHub Actions",
-      "CI/CD Pipelines",
       "Docker",
       "Kubernetes",
-      "SonarQube",
-      "OpenTelemetry",
-      "Security Scanning",
       "TDD",
       "Test Automation",
-      "Playwright",
+      "OpenTelemetry",
     ],
   },
   {
@@ -136,27 +113,17 @@ const SKILL_GROUPS = [
 
 export default function About() {
   return (
-    <section id="about" className="scroll-mt-24 py-16 sm:py-24">
+    <section id="about" className="scroll-mt-24 pt-8 pb-16 sm:pt-12 sm:pb-24">
       <Reveal>
-        <h2 className="font-mono text-xs font-semibold tracking-widest text-indigo-600 uppercase dark:text-indigo-400">
-          About
-        </h2>
-        <div className="mt-4 max-w-2xl space-y-4 text-neutral-700 dark:text-neutral-300">
-          <p>
-            Senior Backend &amp; Applied AI Engineer with 13+ years in
-            software engineering, with deep experience building backend
-            platforms, cloud-native systems, enterprise integrations, and
-            distributed architectures across .NET, Azure, and AWS. Combines
-            production backend engineering with agentic AI, RAG, evaluation,
-            and AI governance, delivered as reliable, enterprise-grade
-            systems.
+        <div className="rounded-lg border border-neutral-200 p-5 dark:border-white/10">
+          <h2 className="font-mono text-xs font-semibold tracking-widest text-indigo-600 uppercase dark:text-indigo-400">
+            About
+          </h2>
+          <p className="mt-3 max-w-xxl text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+            Deep experience building backend platforms, cloud-native systems, enterprise integrations, and distributed architectures across .NET, Azure, and AWS. Combines production backend engineering with agentic AI, multi-agentic workflows, RAG, evaluation, and AI governance, delivered as reliable, enterprise-grade systems.
           </p>
-        </div>
-      </Reveal>
 
-      <Reveal delay={100}>
-        <div className="mt-12 rounded-lg border border-neutral-200 p-5 dark:border-white/10">
-          <dl className="flex flex-wrap gap-x-10 gap-y-4">
+          <dl className="mt-5 flex flex-wrap gap-x-10 gap-y-4">
             {STATS.map((stat) => (
               <div key={stat.label}>
                 <dt className="sr-only">{stat.label}</dt>
@@ -170,13 +137,7 @@ export default function About() {
             ))}
           </dl>
 
-          <p className="mt-4 max-w-xl text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
-            From agentic AI platforms and enterprise client portals to
-            fintech apps and safety-compliance systems, spanning greenfield
-            builds, cloud migrations, and internal developer tooling.
-          </p>
-
-          <div className="mt-3 flex flex-wrap gap-2">
+          <div className="mt-5 flex flex-wrap gap-2">
             {INDUSTRIES.map((industry) => (
               <span
                 key={industry}

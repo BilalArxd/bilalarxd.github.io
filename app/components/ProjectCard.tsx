@@ -8,7 +8,7 @@ export default function ProjectCard({ project }: { project: Project }) {
   return (
     <article
       id={project.slug}
-      className="scroll-mt-24 flex h-full gap-4 rounded-lg border border-neutral-200 p-5 transition-colors hover:border-indigo-400 dark:border-white/10 dark:hover:border-indigo-500/60"
+      className="scroll-mt-24 flex gap-4 rounded-lg border border-neutral-200 p-5 transition-colors hover:border-indigo-400 dark:border-white/10 dark:hover:border-indigo-500/60"
     >
       <CompanyLogo company={project.company} size="h-9 w-9" />
       <div className="min-w-0 flex-1">
@@ -26,10 +26,13 @@ export default function ProjectCard({ project }: { project: Project }) {
           {project.overview}
         </p>
 
-        <div className="mt-3">
-          <p className="text-xs font-semibold text-neutral-500 uppercase dark:text-neutral-500">
-            What I did
-          </p>
+        <details className="group mt-3">
+          <summary className="cursor-pointer list-none text-xs font-semibold text-neutral-500 uppercase [&::-webkit-details-marker]:hidden">
+            What I did{" "}
+            <span className="text-neutral-400 normal-case dark:text-neutral-600">
+              ({project.contributions.length})
+            </span>
+          </summary>
           <ul className="mt-2 space-y-1.5">
             {project.contributions.map((item) => (
               <li
@@ -41,7 +44,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               </li>
             ))}
           </ul>
-        </div>
+        </details>
 
         {project.clients && project.clients.length > 0 && (
           <div className="mt-4 flex flex-wrap items-center gap-4">

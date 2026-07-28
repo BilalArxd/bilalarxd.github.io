@@ -3,17 +3,22 @@ import Link from "next/link";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
-import ProjectCard from "../components/ProjectCard";
+import BlogPostCard from "../components/BlogPostCard";
+import Pagination from "../components/Pagination";
 import Reveal from "../components/Reveal";
-import { PROJECTS } from "../lib/projects";
+import { getAllPosts, getPostsPage, getTotalPages } from "../lib/posts";
 
 export const metadata: Metadata = {
-  title: "Projects | Bilal Arshad",
+  title: "Blog | Bilal Arshad",
   description:
-    "Selected engineering projects by Bilal Arshad, spanning applied AI, backend platforms, and cloud-native systems.",
+    "Writing on applied AI, backend engineering, and building production systems.",
 };
 
-export default function ProjectsPage() {
+export default function BlogPage() {
+  const posts = getPostsPage(1);
+  const totalPages = getTotalPages();
+  const totalPosts = getAllPosts().length;
+
   return (
     <>
       <Nav />
@@ -26,24 +31,23 @@ export default function ProjectsPage() {
             &larr; Home
           </Link>
           <h1 className="mt-4 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl dark:text-neutral-50">
-            Projects
+            Blog
           </h1>
           <p className="mt-3 max-w-xl text-neutral-600 dark:text-neutral-400">
-            {PROJECTS.length} projects across applied AI, backend platforms,
-            and cloud-native systems.
+            {totalPosts === 0
+              ? "No posts yet — check back soon."
+              : `${totalPosts} post${totalPosts === 1 ? "" : "s"} on applied AI, backend engineering, and building production systems.`}
           </p>
 
-          <div className="mt-12 columns-1 gap-5 sm:columns-2">
-            {PROJECTS.map((project, i) => (
-              <Reveal
-                key={project.slug}
-                delay={(i % 6) * 60}
-                className="mb-5 break-inside-avoid"
-              >
-                <ProjectCard project={project} />
+          <div className="mt-12 grid gap-5 sm:grid-cols-2">
+            {posts.map((post, i) => (
+              <Reveal key={post.slug} delay={(i % 6) * 60}>
+                <BlogPostCard post={post} />
               </Reveal>
             ))}
           </div>
+
+          <Pagination currentPage={1} totalPages={totalPages} />
         </div>
 
         <Contact />
