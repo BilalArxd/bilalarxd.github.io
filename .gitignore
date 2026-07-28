@@ -40,7 +40,6 @@ next-env.d.ts
 
 # source resume files (not published)
 /resume/
-app/components/About.tsx
 .gitignore
 bug.md
 ux.md
