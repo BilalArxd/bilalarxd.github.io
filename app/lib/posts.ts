@@ -63,6 +63,14 @@ function parsePostFile(
 export function getAllPosts(
   postsDirectory: string = DEFAULT_POSTS_DIRECTORY,
 ): Post[] {
+  // content/blog is legitimately empty right now, and git doesn't track
+  // empty directories, so a fresh clone/CI checkout won't even have this
+  // directory on disk — treat "missing" the same as "empty" rather than
+  // throwing ENOENT.
+  if (!fs.existsSync(postsDirectory)) {
+    return [];
+  }
+
   const filenames = fs
     .readdirSync(postsDirectory)
     .filter((name) => name.endsWith(".html"));

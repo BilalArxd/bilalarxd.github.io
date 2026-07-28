@@ -12,6 +12,10 @@ const fixture = (name: string) =>
   path.join(__dirname, "__fixtures__", name);
 
 describe("getAllPosts", () => {
+  it("returns an empty array when the posts directory doesn't exist", () => {
+    expect(getAllPosts(fixture("does-not-exist"))).toEqual([]);
+  });
+
   it("returns posts sorted newest-first", () => {
     const posts = getAllPosts(fixture("blog-valid"));
     expect(posts.map((p) => p.title)).toEqual([
@@ -109,21 +113,5 @@ describe("pagination", () => {
 
   it("a single-page fixture reports totalPages 1", () => {
     expect(getTotalPages(fixture("blog-valid"))).toBe(1);
-  });
-});
-
-describe("seed content (content/blog)", () => {
-  it("parses all real seed posts without error and finds at least 1", () => {
-    const posts = getAllPosts();
-    expect(posts.length).toBeGreaterThanOrEqual(1);
-    for (const post of posts) {
-      expect(post.title.length).toBeGreaterThan(0);
-      expect(post.excerpt.length).toBeGreaterThan(0);
-    }
-  });
-
-  it("at least one seed post includes an image", () => {
-    const posts = getAllPosts();
-    expect(posts.some((post) => post.body.includes("<img"))).toBe(true);
   });
 });
