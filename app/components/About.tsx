@@ -119,10 +119,9 @@ export default function About() {
           <h2 className="font-mono text-xs font-semibold tracking-widest text-indigo-600 uppercase dark:text-indigo-400">
             About
           </h2>
-          <p className="mt-3 max-w-xxl text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+          <p className="mt-3 max-w-xl text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
             Deep experience building backend platforms, cloud-native systems, enterprise integrations, and distributed architectures across .NET, Azure, and AWS. Combines production backend engineering with agentic AI, multi-agentic workflows, RAG, evaluation, and AI governance, delivered as reliable, enterprise-grade systems.
           </p>
-
           <dl className="mt-5 flex flex-wrap gap-x-10 gap-y-4">
             {STATS.map((stat) => (
               <div key={stat.label}>

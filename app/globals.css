@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Force-generate utilities the build-time content scanner isn't reliably
+   picking up from About.tsx's stats block (sr-only, gap-x-10, gap-y-4) —
+   without these, the hidden stat labels render visibly and the two stat
+   columns collapse together with no gap between them. */
+@source inline("sr-only gap-x-10 gap-y-4");
+
 @theme inline {
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
